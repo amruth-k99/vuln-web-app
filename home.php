@@ -14,10 +14,11 @@
 
 <body>
 
+    
 
     <body>
         <div id="login">
-            <h3 class="text-center text-white pt-5">Only for Supers and Admins</h3>
+            <h3 class="text-center text-white pt-5">Home</h3>
             <div class="container">
                 <div id="login-row" class="row justify-content-center align-items-center">
                     <div id="login-column" class="col-md-6">
@@ -26,23 +27,13 @@
                                 <h3 class="text-center text-info">Login</h3>
                                 <div class="form-group">
                                     <label for="username" class="text-info">Username:</label><br>
-                                    <input type="text" name="username" id="username" class="form-control" required>
+                                    <input type="text" name="username" id="username" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="text-info">Password:</label><br>
-                                    <input type="text" name="password" id="password" class="form-control" required>
+                                    <input type="text" name="password" id="password" class="form-control">
                                 </div>
-
                                 <div class="form-group">
-                                    <div style="color:#c40d00">
-                                        <?php
-
-                                        function error_func($tt)
-                                        {
-                                            echo $tt;
-                                        }
-
-                                        ?></div>
                                     <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                                 </div>
 
@@ -51,30 +42,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div clas="php_style" style="color:#17a2b8  ">
-            <?php
-            include("config.php");
-            session_start();
-
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                error_func('asdd');
-
-                $myusername =  $_POST['username'];
-                $mypassword = $_POST['password'];
-                $sql = "SELECT * FROM passwords where username='" . $myusername . "' and password ='" . $mypassword . "'";
-                // Here is the trick for SQLi from username --->>>  admin'#'
-                echo ($sql);
-                $result = mysqli_query($db, $sql);
-                $count = mysqli_num_rows($result);
-                if ($count) {
-                    header("location: home.php");
-                } else {
-                    error_func("Your Login Name or Password is invalid");
-                }
-            }
-            ?>
         </div>
     </body>
 
