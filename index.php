@@ -33,14 +33,19 @@
                                     <input type="text" name="password" id="password" class="form-control" required>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group m-1">
                                     <div style="color:#c40d00">
                                         <?php
-
-                                        function error_func($tt)
-                                        {
-                                            echo $tt;
+                                        if (isset($_GET["error"])) {
+                                            if ($_GET["error"] == 'ErrorLogin') {
+                                                echo ('Your Login Name or Password is invalid');
+                                            } else if ($_GET["error"] == 'LoginFirst') {
+                                                echo ('Plese Login First!');
+                                            } else {
+                                                echo ('Please Login');
+                                            }
                                         }
+
 
                                         ?></div>
                                     <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
@@ -54,24 +59,28 @@
         </div>
         <div clas="php_style" style="color:#17a2b8  ">
             <?php
-            include("config.php");
+            include("./partials/config.php");
             session_start();
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                error_func('asdd');
-
                 $myusername =  $_POST['username'];
                 $mypassword = $_POST['password'];
+                echo ($mypassword);
+                $hash = password_hash($mypassword, PASSWORD_DEFAULT);
+                echo $hash;
                 $sql = "SELECT * FROM passwords where username='" . $myusername . "' and password ='" . $mypassword . "'";
                 // Here is the trick for SQLi from username --->>>  admin'#'
-                echo ($sql);
+
                 $result = mysqli_query($db, $sql);
                 $count = mysqli_num_rows($result);
                 if ($count) {
+                    session_start();
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["username"] = $username;
                     header("location: home.php");
                 } else {
-                    error_func("Your Login Name or Password is invalid");
+                    header('location:index.php?error=ErrorLogin');
                 }
             }
             ?>

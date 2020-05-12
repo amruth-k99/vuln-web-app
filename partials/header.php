@@ -21,7 +21,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link btn btn-outline-danger my-2 my-sm-0" href="index.php">Logout</a>
+                    <a class="nav-link btn btn-outline-danger my-2 my-sm-0" href="logout.php">Logout</a>
                 </li>
 
             </ul>

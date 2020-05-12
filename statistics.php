@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+<?php
+include('./partials/login_check.php');
+?>
 
 <head>
     <!-- Required meta tags -->
