@@ -54,11 +54,11 @@ include('./partials/login_check.php');
                                     </tr>
                                     <tr>
                                         <td>Id</td>
-                                        <td>123456788</td>
+                                        <td>' . ($row[2]) . '</td>
                                     </tr>
                                     <tr>
                                         <td>Control</td>
-                                        <td>Overall</td>
+                                        <td>' . ($row[3]) . '</td>
                                     </tr>
                                 </tbody>';
                                 } ?>
