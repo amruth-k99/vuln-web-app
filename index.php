@@ -27,8 +27,8 @@
                                 <div class="form-group">
                                     <label for="username" class="text-info">Username:</label><br>
                                     <input type="text" name="username" id="username" class="form-control" required>
-                                </div> 
-                                <div  class="form-group">
+                                </div>
+                                <div class="form-group">
                                     <label for="password" class="text-info">Password:</label><br>
                                     <input type="text" name="password" id="password" class="form-control" required>
                                 </div>
@@ -76,8 +76,11 @@
                 $count = mysqli_num_rows($result);
                 if ($count) {
                     session_start();
+
+                    // Store data in session variables
                     $_SESSION["loggedin"] = true;
-                    $_SESSION["username"] = $username;
+                    $_SESSION["username"] = $myusername;
+
                     header("location: home.php");
                 } else {
                     header('location:index.php?error=ErrorLogin');

@@ -21,7 +21,14 @@ include('./partials/login_check.php');
 
     <body>
         <?php
-        include('./partials/header.php')
+        include('./partials/header.php');
+        $sql = "SELECT * FROM passwords where username='" . ($_GET['user']) .  "'";
+        $result = mysqli_query($db, $sql);
+        $count = mysqli_num_rows($result);
+        echo ($count);
+
+
+
         ?>
         <div id="login">
             <h3 class="text-center text-white pt-5">Profile Data</h3>
@@ -32,32 +39,30 @@ include('./partials/login_check.php');
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Pair</th>
+                                        <th scope="col">Value</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <?php
+                                while ($row = mysqli_fetch_array($result)) {
+
+
+                                    echo '<tbody>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>Name</td>
+                                        <td>' . ($row[0]) . '</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
+                                        <td>Id</td>
+                                        <td>123456788</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
+                                        <td>Control</td>
+                                        <td>Overall</td>
                                     </tr>
-                                </tbody>
+                                </tbody>';
+                                } ?>
+
                             </table>
                         </div>
                     </div>
